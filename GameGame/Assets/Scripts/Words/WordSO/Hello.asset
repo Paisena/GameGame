@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f60ad86bc46dd4c8335a0e4230a1a5, type: 3}
   m_Name: Hello
   m_EditorClassIdentifier: Assembly-CSharp::Word
-  text: 
+  text: hello
