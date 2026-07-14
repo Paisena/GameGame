@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WordManager : MonoBehaviour
 {
-    [SerializeField] List<Word> WordList;  
+    [SerializeField] List<Word> WordList; 
+    [SerializeField] List<Word> RemovedWordsList;
     [SerializeField] GameObject WordPrefab;
+    [SerializeField] Canvas canvas;
     public bool CanSpawnWord = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,10 +23,11 @@ public class WordManager : MonoBehaviour
 
     IEnumerator SpawnWordTimer()
     {
+        // Timer for generating new words during gameplay
         do
         {
+            yield return new WaitForSeconds(1);
             SpawnWord();
-            yield return new WaitForSeconds(5);
 
         } while (CanSpawnWord);
     }
@@ -32,5 +35,43 @@ public class WordManager : MonoBehaviour
     public void SpawnWord()
     {
         print("Spawning word");
+        // use word prefab to spawn in word and attach a word SO to it from word list
+        GameObject newWordGO = Instantiate(WordPrefab, canvas.transform, true);
+        
+        Vector3 position = new Vector3(Random.Range(-500, 500), Random.Range(-500, 500), 0);
+        newWordGO.transform.localPosition = position;
+
+        int randomWordIndex = Random.Range(0, WordList.Count);
+
+        Word newWord = WordList[randomWordIndex];
+        RemoveWord(randomWordIndex);
+
+        KCListener NewWordListener = newWordGO.GetComponentInChildren<KCListener>();
+        NewWordListener.wordManager = this;
+        print($"giving word {newWord}");
+        NewWordListener.SetWord(newWord);
+
+    }
+
+    public void AddWord(Word newWord)
+    {
+        WordList.Add(newWord);
+    }
+
+    public void RemoveWord(int index)
+    {
+        WordList.RemoveAt(index);
+    }
+
+    public void RemoveWord(Word word)
+    {
+        if (WordList.Contains(word))
+        {
+            WordList.Remove(word);
+        }
+        else
+        {
+            Debug.LogWarning($"tried to remove word {word.text} not in word list");
+        }
     }
 }

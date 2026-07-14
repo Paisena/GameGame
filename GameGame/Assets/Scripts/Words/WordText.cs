@@ -9,7 +9,7 @@ public class WordText : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetupText();
+        
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class WordText : MonoBehaviour
         
     }
 
-    private void SetupText()
+    public void SetupText()
     {
         text.text = KeyListener.word.text;
     }
@@ -37,7 +37,7 @@ public class WordText : MonoBehaviour
         for (int i = 0; i < KeyListener.word.text.Length; i++)
         {
             word += KeyListener.word.text[i];
-            if (index == i)
+            if (index-1 == i)
             {
                 word += "</b>";
             }

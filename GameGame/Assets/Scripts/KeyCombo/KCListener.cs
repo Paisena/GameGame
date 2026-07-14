@@ -10,7 +10,7 @@ using UnityEngine;
 public class KCListener : MonoBehaviour
 {
     [SerializeField] List<KeyCode> KeysPressed;
-    [SerializeField] WordManager wordManager;
+    public WordManager wordManager;
     [SerializeField] public Word word;
     [SerializeField] WordText wordText;
     
@@ -24,8 +24,13 @@ public class KCListener : MonoBehaviour
     void Update()
     {
         DetectKeyInputs();
+    }
 
-
+    public void SetWord(Word newWord)
+    {
+        print("setting word");
+        word = newWord;
+        wordText.SetupText();
     }
 
     void DetectKeyInputs()
@@ -38,10 +43,6 @@ public class KCListener : MonoBehaviour
             }
         }
 
-        
-
-        // print($"keys press are: {keys}");
-
         ValidateInputs();
     }
 
@@ -53,6 +54,9 @@ public class KCListener : MonoBehaviour
             print("Word entered correctly");
             KeysPressed.Clear();
             wordText.ResetHighlight();
+
+            wordManager.AddWord(word);
+            Destroy(transform.parent.gameObject);
             return;
         }
         else
@@ -68,6 +72,7 @@ public class KCListener : MonoBehaviour
             if (word.text[i] != (char)KeysPressed[i])
             {
                 print($"wrong KC word: {word.text[i]} KP: {KeysPressed[i]}");
+                wordText.ResetHighlight();
                 KeysPressed.Clear();
             }
             else
