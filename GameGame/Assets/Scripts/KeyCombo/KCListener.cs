@@ -13,6 +13,7 @@ public class KCListener : MonoBehaviour
     public WordManager wordManager;
     [SerializeField] public Word word;
     [SerializeField] WordText wordText;
+    [SerializeField] KeyCode[] AllowedKeys; 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,7 +36,7 @@ public class KCListener : MonoBehaviour
 
     void DetectKeyInputs()
     {
-        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        foreach (KeyCode kcode in AllowedKeys)
         {
             if (Input.GetKeyDown(kcode))
             {
@@ -49,7 +50,13 @@ public class KCListener : MonoBehaviour
     void ValidateInputs()
     {
         // first check if word matches TL
-        if (word.text == GetKeysPressedWord().ToLower())
+
+        // convert word.text to keycode equivalent
+
+        string KeycodeWordEqual = "";
+
+
+        if (word.text == GetKeysPressedWord().ToLower() || word.text == GetKeysPressedWord())
         {
             print("Word entered correctly");
             KeysPressed.Clear();
@@ -61,7 +68,7 @@ public class KCListener : MonoBehaviour
         }
         else
         {
-            //print($"thing: {GetKeysPressedWord()}");
+            print($"thing: {GetKeysPressedWord()}");
         }
 
         // check if the current string of words is going the right way to compelete the word
@@ -75,25 +82,16 @@ public class KCListener : MonoBehaviour
                 wordText.ResetHighlight();
                 KeysPressed.Clear();
             }
-            else
-            {
-                PrintKP();
-            }
         }
+        PrintKP();
         wordText.HighlightLetter(KeysPressed.Count);
 
     }
 
     private void PrintKP()
     {
-        string keys = "";
-
-                foreach (KeyCode kcode in KeysPressed)
-                {
-                    keys += kcode;
-                }
-
-                print($"current TL: {keys}");
+        // KP == keys press
+        print($"current TL: {GetKeysPressedWord()}");
     }
 
     private string GetKeysPressedWord()
@@ -102,11 +100,22 @@ public class KCListener : MonoBehaviour
 
         foreach (KeyCode kcode in KeysPressed)
         {
-            keys += kcode;
+            keys += KeyCodeToString(kcode);
         }
 
         return keys;
     }
 
+    private string KeyCodeToString(KeyCode keyCode)
+    {
+        string keyString = keyCode.ToString();
+
+        if (keyString.StartsWith("Alpha"))
+        {
+            return keyString.Replace("Alpha", "");
+        }
+        
+        return keyString;
+    }
 
 }
