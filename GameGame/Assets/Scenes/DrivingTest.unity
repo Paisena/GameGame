@@ -213,6 +213,14 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1634631068}
+    - target: {fileID: 594706736026300228, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
+      propertyPath: WordList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 594706736026300228, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
+      propertyPath: 'WordList.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c17e00cb09c55234fa6734505710c722, type: 2}
     - target: {fileID: 1058123734100426635, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
       propertyPath: m_Name
       value: WordManager
