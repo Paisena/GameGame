@@ -34,6 +34,13 @@ public class WordManager : MonoBehaviour
 
     public void SpawnWord()
     {
+
+        if (WordList.Count == 0)
+        {
+            print("out of words, cannot spawn new ones");
+            return;
+        }
+
         print("Spawning word");
         // use word prefab to spawn in word and attach a word SO to it from word list
         GameObject newWordGO = Instantiate(WordPrefab, canvas.transform, true);
