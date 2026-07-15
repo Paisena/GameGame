@@ -24,12 +24,10 @@ public class CarController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) && positionIndex > 0)
         {
-            print("moving player left");
             positionIndex -= 1;
         }    
         else if (Input.GetKeyDown(KeyCode.RightArrow) && positionIndex < CarPositions.Count-1)
         {
-            print("moving player right");
             positionIndex += 1;
         }
     }
