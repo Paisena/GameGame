@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1058123734100426635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7435213906260760829}
+  - component: {fileID: 594706736026300228}
+  m_Layer: 0
+  m_Name: WordManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7435213906260760829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058123734100426635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -173.52725, y: -10.63774, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &594706736026300228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058123734100426635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e93ac64db9b254b9dec27f3c02e246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WordManager
+  WordList:
+  - {fileID: 11400000, guid: 482e1960d7c220a4f9bb9da337fdbfaa, type: 2}
+  - {fileID: 11400000, guid: f443aa6ed9554e14a978afc790539a84, type: 2}
+  - {fileID: 11400000, guid: 11db33244e23fc84bb9c77d5baa24149, type: 2}
+  - {fileID: 11400000, guid: 8dab48a224055fe408ea27a370e03b42, type: 2}
+  - {fileID: 11400000, guid: 57fc709335a69d34d9f17795db544a8b, type: 2}
+  - {fileID: 11400000, guid: 19657d728345c4441a82fce97b4e50ed, type: 2}
+  - {fileID: 11400000, guid: 2eab8bcd86e62bb4790ae1d64b4007ef, type: 2}
+  - {fileID: 11400000, guid: 0d971f581e2b6c5428aeddef16540890, type: 2}
+  - {fileID: 11400000, guid: f1b62ff02992c1944a6799f3c06cd644, type: 2}
+  RemovedWordsList: []
+  WordPrefab: {fileID: 1700528826863571867, guid: 87ecc14d43ff71143aab4bb0a0340a79, type: 3}
+  canvas: {fileID: 0}
+  CanSpawnWord: 1
