@@ -9,6 +9,7 @@ public class TerrainSpawner : MonoBehaviour
     [SerializeField] bool CanSpawnTerrain = true;
     [SerializeField] GameObject TerrainPrefab;
     [SerializeField] List<Transform> SpawnPositionList;
+    [SerializeField] float SpawnTime = 1.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,7 +39,7 @@ public class TerrainSpawner : MonoBehaviour
         // Timer for generating new words during gameplay
         do
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(SpawnTime);
             SpawnTerrain();
 
         } while (CanSpawnTerrain);
