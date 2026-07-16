@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Terrain : MonoBehaviour
+public class TerrainObject : MonoBehaviour
 {
     [SerializeField] float MovementSpeed = 1.0f;
     [SerializeField] int DespawnYPosition = 1000;
+    public int damage = 1;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
