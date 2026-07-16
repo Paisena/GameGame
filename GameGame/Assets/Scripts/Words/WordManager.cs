@@ -8,6 +8,7 @@ public class WordManager : MonoBehaviour
     [SerializeField] List<Word> RemovedWordsList;
     [SerializeField] GameObject WordPrefab;
     [SerializeField] Canvas canvas;
+    [SerializeField] float SpawnTime = 3;
     public bool CanSpawnWord = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +27,7 @@ public class WordManager : MonoBehaviour
         // Timer for generating new words during gameplay
         do
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(SpawnTime);
             SpawnWord();
 
         } while (CanSpawnWord);

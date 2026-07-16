@@ -16,6 +16,7 @@ public class PhysicsCarControlller : MonoBehaviour
     private float steeringInput = 0;
     private float rotationAngle = 0;
     private float velocityVsUP = 0;
+    private float velocityVsRight = 0;
 
     [SerializeField] private Rigidbody2D carRigidBody2D;
 
@@ -51,32 +52,43 @@ public class PhysicsCarControlller : MonoBehaviour
         // THINGS TO ADD: 
         // slow down harder when braking EX: braking when moving upwards
         // Slow down when going in another direction EX: slow down up and down when only pressing left or right
-        velocityVsUP = Vector2.Dot(transform.up, carRigidBody2D.linearVelocity);
-
-        if (velocityVsUP > MaxSpeed && accerlerationInput > 0)
-            return;
-
-        if (velocityVsUP < -MaxSpeed * 0.5f && accerlerationInput < 0)
-            return;
-
-        if (carRigidBody2D.linearVelocity.sqrMagnitude > MaxSpeed && accerlerationInput > 0)
-            return;
+        
 
         if (accerlerationInput == 0 && steeringInput == 0)
-            carRigidBody2D.linearDamping = Mathf.Lerp(carRigidBody2D.linearDamping, 3.0f, Time.fixedDeltaTime * 3);
+            carRigidBody2D.linearDamping = Mathf.Lerp(carRigidBody2D.linearDamping, 5.0f, Time.fixedDeltaTime * 3);
         else
-            carRigidBody2D.linearDamping = 1;
+            carRigidBody2D.linearDamping = 3;
 
 
-        Vector2 HorizontalForceVector = transform.right * steeringInput * AccerlerationFactor;
-        print($"Steerinninpug: {steeringInput} carRigidBody2D.linearVelocityX: {carRigidBody2D.linearVelocityX}");
+        Vector2 HorizontalForceVector = transform.right * steeringInput * AccerlerationFactor * 4;
         if ((steeringInput > 0 && carRigidBody2D.linearVelocityX < 0) || steeringInput < 0 && carRigidBody2D.linearVelocityX > 0)
         {
             // accerlerating in opposite direction of movement, add more force
             HorizontalForceVector.x += 10 * steeringInput;
         }
 
+        velocityVsRight = Vector2.Dot(transform.right, carRigidBody2D.linearVelocity);     
+
+        if (velocityVsRight > MaxSpeed && accerlerationInput > 0)
+        {
+            print("maxspeed hit for x");
+            HorizontalForceVector.x = 0;
+        }
+
+        if (velocityVsRight < -MaxSpeed * 0.5f && accerlerationInput < 0)
+        {
+            print("maxspeed hit for x");
+            HorizontalForceVector.x = 0;
+        }
+
+        if (carRigidBody2D.linearVelocity.sqrMagnitude > MaxSpeed && steeringInput != 0)
+        {
+            print("maxspeed hit for x");
+            HorizontalForceVector.x = 0;
+        }
+
         carRigidBody2D.AddForce(HorizontalForceVector, ForceMode2D.Force);
+
 
         Vector2 VerticalForceVector = transform.up * accerlerationInput * AccerlerationFactor;
 
@@ -85,6 +97,27 @@ public class PhysicsCarControlller : MonoBehaviour
             // accerlerating in opposite direction of movement, add more force
             VerticalForceVector.y += 10 * accerlerationInput;
         }
+        velocityVsUP = Vector2.Dot(transform.up, carRigidBody2D.linearVelocity);     
+
+        if (velocityVsUP > MaxSpeed && accerlerationInput > 0)
+        {
+            print("maxspeed hit for y");
+            VerticalForceVector.y = 0;
+        }
+
+        if (velocityVsUP < -MaxSpeed * 0.5f && accerlerationInput < 0)
+        {
+            print("maxspeed hit for y");
+            VerticalForceVector.y = 0;
+        }
+
+        if (carRigidBody2D.linearVelocity.sqrMagnitude > MaxSpeed && accerlerationInput != 0)
+        {
+            print("maxspeed hit for y");
+            VerticalForceVector.y = 0;
+        }
+        print($"VForce: {VerticalForceVector}");
+        print($"Hforce: {HorizontalForceVector}");
 
         carRigidBody2D.AddForce(VerticalForceVector, ForceMode2D.Force);
         //print(carRigidBody2D.linearVelocityX);

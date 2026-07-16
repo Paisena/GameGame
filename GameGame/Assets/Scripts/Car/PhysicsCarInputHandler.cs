@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(PhysicsCarControlller))]
 public class PhysicsCarInputHandler : MonoBehaviour
 {
     PhysicsCarControlller physicsCarControlller;
