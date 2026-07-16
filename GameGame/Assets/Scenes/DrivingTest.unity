@@ -166,7 +166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &403837976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +224,10 @@ PrefabInstance:
     - target: {fileID: 1058123734100426635, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
       propertyPath: m_Name
       value: WordManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058123734100426635, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7435213906260760829, guid: 828c180ca3227ed4d909e3f9cca15ab8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,6 +319,8 @@ GameObject:
   - component: {fileID: 729747977}
   - component: {fileID: 729747982}
   - component: {fileID: 729747983}
+  - component: {fileID: 729747985}
+  - component: {fileID: 729747984}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -329,7 +335,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729747976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4721d4bf20854124caad1f37cd65a5a9, type: 3}
   m_Name: 
@@ -465,14 +471,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729747976}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -484,6 +490,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &729747984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729747976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaac764e3acb1649be63c97f07ee17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsCarControlller
+  driftFactor: 0.95
+  AccerlerationFactor: 2
+  TurnFactor: 3.5
+  MaxSpeed: 20
+  TurnAngleMax: 50
+  TurnAngleMin: -50
+  LeftRightSpeed: 1
+  carRigidBody2D: {fileID: 729747983}
+--- !u!114 &729747985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729747976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf6db049b61e16498dd5f8d184ef80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsCarInputHandler
 --- !u!1 &823842122
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,7 +68,7 @@ public class KCListener : MonoBehaviour
         }
         else
         {
-            print($"thing: {GetKeysPressedWord()}");
+            // print($"thing: {GetKeysPressedWord()}");
         }
 
         // check if the current string of words is going the right way to compelete the word
@@ -83,7 +83,7 @@ public class KCListener : MonoBehaviour
                 KeysPressed.Clear();
             }
         }
-        PrintKP();
+        // PrintKP();
         wordText.HighlightLetter(KeysPressed.Count);
 
     }
