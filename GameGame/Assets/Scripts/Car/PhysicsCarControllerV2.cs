@@ -1,7 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 // taken from https://www.youtube.com/watch?v=DVHcOS1E5OQ
-public class PhysicsCarControlller : MonoBehaviour
+public class PhysicsCarControlllerV2 : MonoBehaviour
 {
     public float driftFactor = 0.95f;
     public float AccerlerationFactor = 30.0f;
@@ -12,6 +12,12 @@ public class PhysicsCarControlller : MonoBehaviour
     public float TurnAngleMin = -50;
     public float LeftRightSpeed = 1;
     public float CarDrag = 15;
+    public enum WhichDirection
+    {
+        Up,
+        Right,
+        Stopped
+    }
 
     private float accerlerationInput = 0;
     private float steeringInput = 0;
@@ -42,16 +48,16 @@ public class PhysicsCarControlller : MonoBehaviour
     {
         ApplyEngineForce();
 
-        KillOrthogonalVelocity();
+        // KillOrthogonalVelocity();
 
         //ApplySteering();
     }
 
     void ApplyEngineForce()
     {
+        // if going up or down and left is pressed
 
         // THINGS TO ADD: 
-        // slow down harder when braking EX: braking when moving upwards
         // Slow down when going in another direction EX: slow down up and down when only pressing left or right
         
 
