@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // TL means Typed Letters
 // KC means Key Combo
@@ -14,12 +16,13 @@ public class KCListener : MonoBehaviour
     [SerializeField] public Word word;
     [SerializeField] WordText wordText;
     [SerializeField] KeyCode[] AllowedKeys; 
+    [SerializeField] float DespawnTimer = 5.0f;
     public static event Action OnWordTyped;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(StartTimer());
     }
 
     // Update is called once per frame
@@ -122,6 +125,12 @@ public class KCListener : MonoBehaviour
         }
         
         return keyString;
+    }
+
+    IEnumerator StartTimer()
+    {
+        yield return new WaitForSeconds(DespawnTimer); 
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
 }
