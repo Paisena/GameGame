@@ -42,7 +42,6 @@ public class PhysicsCarControlller : MonoBehaviour
     {
         ApplyEngineForce();
 
-        KillOrthogonalVelocity();
 
         //ApplySteering();
     }
@@ -72,19 +71,16 @@ public class PhysicsCarControlller : MonoBehaviour
 
         if (velocityVsRight > MaxSpeed && steeringInput > 0)
         {
-            print("maxspeed hit for x1");
             HorizontalForceVector.x = 0;
         }
 
         if (velocityVsRight < -MaxSpeed && steeringInput < 0)
         {
-            print("maxspeed hit for x2");
             HorizontalForceVector.x = 0;
         }
 
         if (carRigidBody2D.linearVelocity.sqrMagnitude > MaxSpeed && steeringInput != 0)
         {
-            print("maxspeed hit for x3");
             HorizontalForceVector.x = 0;
         }
 
@@ -107,19 +103,16 @@ public class PhysicsCarControlller : MonoBehaviour
 
         if (velocityVsUP > MaxSpeed && accerlerationInput > 0)
         {
-            print("maxspeed hit for y1");
             VerticalForceVector.y = 0;
         }
 
         if (velocityVsUP < -MaxSpeed * 0.5f && accerlerationInput < 0)
         {
-            print("maxspeed hit for y2");
             VerticalForceVector.y = 0;
         }
 
         if (carRigidBody2D.linearVelocity.sqrMagnitude > MaxSpeed && accerlerationInput != 0)
         {
-            print("maxspeed hit for y3");
             VerticalForceVector.y = 0;
         }
 
@@ -127,9 +120,9 @@ public class PhysicsCarControlller : MonoBehaviour
         {
             VerticalForceVector *= 2f;
         }
-        print($"VForce: {VerticalForceVector}");
-        print($"Hforce: {HorizontalForceVector}");
-        print($"velo{carRigidBody2D.linearVelocity}");
+        // print($"VForce: {VerticalForceVector}");
+        // print($"Hforce: {HorizontalForceVector}");
+        // print($"velo{carRigidBody2D.linearVelocity}");
 
         carRigidBody2D.AddForce(VerticalForceVector, ForceMode2D.Force);
         //print(carRigidBody2D.linearVelocityX);
