@@ -14,6 +14,7 @@ public class KCListener : MonoBehaviour
     [SerializeField] public Word word;
     [SerializeField] WordText wordText;
     [SerializeField] KeyCode[] AllowedKeys; 
+    public static event Action OnWordTyped;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,17 +54,11 @@ public class KCListener : MonoBehaviour
 
         // convert word.text to keycode equivalent
 
-        string KeycodeWordEqual = "";
-
-
         if (word.text == GetKeysPressedWord().ToLower() || word.text == GetKeysPressedWord())
         {
             print("Word entered correctly");
-            KeysPressed.Clear();
-            wordText.ResetHighlight();
-
-            wordManager.AddWord(word);
-            Destroy(transform.parent.gameObject);
+            WordCompleted();
+            
             return;
         }
         else
@@ -85,6 +80,17 @@ public class KCListener : MonoBehaviour
         }
         // PrintKP();
         wordText.HighlightLetter(KeysPressed.Count);
+
+    }
+
+    void WordCompleted()
+    {
+        KeysPressed.Clear();
+        wordText.ResetHighlight();
+
+        wordManager.AddWord(word);
+        OnWordTyped?.Invoke();
+        Destroy(transform.parent.gameObject);
 
     }
 
